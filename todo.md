@@ -94,3 +94,9 @@
 - [ ] Redeploy nach Environment Variable Änderung
 - [ ] Login auf Production testen
 
+
+
+
+## Critical Bugs
+- [ ] Vercel deployment: /api route not found - need to create Vercel serverless function handler
+
