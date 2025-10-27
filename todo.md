@@ -107,4 +107,8 @@
 
 ## In Progress
 - [ ] Fix API Routing für Vercel Serverless Functions (tRPC Endpoints)
+  - [ ] Node-Version pinnen (22.x)
+  - [ ] Node Runtime erzwingen
+  - [ ] Dependencies prüfen
+  - [ ] Health-Check Endpoint erstellen
 

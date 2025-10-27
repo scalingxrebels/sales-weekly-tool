@@ -6,12 +6,14 @@ export const config = {
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   return res.json({ 
-    status: 'ok', 
-    message: 'API is working',
+    ok: true,
+    timestamp: new Date().toISOString(),
+    node: process.version,
     env: {
-      hasDatabaseUrl: !!process.env.DATABASE_URL,
-      hasJwtSecret: !!process.env.JWT_SECRET,
-    }
+      hasDatabaseUrl: Boolean(process.env.DATABASE_URL),
+      hasJwtSecret: Boolean(process.env.JWT_SECRET),
+    },
+    platform: 'vercel',
   });
 }
 

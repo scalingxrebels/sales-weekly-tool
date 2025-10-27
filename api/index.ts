@@ -5,6 +5,10 @@ import cookieParser from 'cookie-parser';
 import { appRouter } from '../server/routers';
 import { createContext } from '../server/_core/context';
 
+export const config = {
+  runtime: 'nodejs',
+};
+
 // Export handler for Vercel
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Create Express app for each request (Vercel serverless is stateless)
