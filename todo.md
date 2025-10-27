@@ -102,3 +102,9 @@
 - [x] Vercel deployment: Frontend 404 NOT_FOUND - need to configure static file serving
 - [ ] Vercel deployment: API returns 500 errors - need to configure proper serverless function routing
 
+
+
+
+## In Progress
+- [ ] Fix API Routing für Vercel Serverless Functions (tRPC Endpoints)
+

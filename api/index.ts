@@ -5,29 +5,30 @@ import cookieParser from 'cookie-parser';
 import { appRouter } from '../server/routers';
 import { createContext } from '../server/_core/context';
 
-// Create Express app for Vercel serverless
-const app = express();
-
-// Configure middleware
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cookieParser());
-
-// tRPC API
-app.use(
-  '/api/trpc',
-  createExpressMiddleware({
-    router: appRouter,
-    createContext,
-  })
-);
-
 // Export handler for Vercel
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Rewrite path to remove /api prefix for Express routing
-  const originalUrl = req.url || '';
-  req.url = originalUrl.replace(/^\/api/, '/api');
+  // Create Express app for each request (Vercel serverless is stateless)
+  const app = express();
   
+  // Configure middleware
+  app.use(express.json({ limit: '50mb' }));
+  app.use(express.urlencoded({ limit: '50mb', extended: true }));
+  app.use(cookieParser());
+  
+  // tRPC API - mount at root since we're already at /api
+  app.use(
+    '/trpc',
+    createExpressMiddleware({
+      router: appRouter,
+      createContext,
+    })
+  );
+  
+  // Rewrite URL to remove /api prefix for Express routing
+  const originalUrl = req.url || '';
+  req.url = originalUrl.replace(/^\/api/, '');
+  
+  // Handle the request
   return app(req as any, res as any);
 }
 
