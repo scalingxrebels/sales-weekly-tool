@@ -84,3 +84,13 @@
 ## Bugs
 - [ ] Login wirft JSON Parse Fehler: "Unexpected token 'A', 'A server e'... is not valid JSON"
 
+
+
+
+## Deployment Status
+- [ ] Vercel Deployment konfigurieren
+- [ ] DATABASE_URL auf Connection Pooling (Port 6543) ändern
+- [ ] JWT_SECRET auf Vercel setzen
+- [ ] Redeploy nach Environment Variable Änderung
+- [ ] Login auf Production testen
+
