@@ -78,3 +78,9 @@
 3. Entwickle die CRUD Formulare für alle Features
 4. Implementiere vollständige Datenanbindung
 
+
+
+
+## Bugs
+- [ ] Login wirft JSON Parse Fehler: "Unexpected token 'A', 'A server e'... is not valid JSON"
+
