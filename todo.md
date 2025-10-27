@@ -99,5 +99,6 @@
 
 ## Critical Bugs
 - [x] Vercel deployment: /api route not found - need to create Vercel serverless function handler
-- [ ] Vercel deployment: Frontend 404 NOT_FOUND - need to configure static file serving
+- [x] Vercel deployment: Frontend 404 NOT_FOUND - need to configure static file serving
+- [ ] Vercel deployment: API returns 500 errors - need to configure proper serverless function routing
 
