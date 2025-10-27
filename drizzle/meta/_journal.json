@@ -1,5 +1,13 @@
 {
   "version": "7",
-  "dialect": "mysql",
-  "entries": []
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1761572695489,
+      "tag": "0000_loving_hairball",
+      "breakpoints": true
+    }
+  ]
 }
