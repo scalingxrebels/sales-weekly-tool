@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../.vercel/output",
+    "rootDir": "..",
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["./client/src/*"],
+      "@shared/*": ["./shared/*"]
+    }
+  },
+  "include": [
+    "./**/*.ts",
+    "../server/**/*.ts",
+    "../shared/**/*.ts",
+    "../drizzle/**/*.ts"
+  ]
+}
+
