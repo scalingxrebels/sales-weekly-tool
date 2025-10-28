@@ -107,8 +107,10 @@
 
 ## In Progress
 - [ ] Fix API Routing für Vercel Serverless Functions (tRPC Endpoints)
-  - [ ] Node-Version pinnen (22.x)
-  - [ ] Node Runtime erzwingen
-  - [ ] Dependencies prüfen
-  - [ ] Health-Check Endpoint erstellen
+  - [x] Node-Version pinnen (22.x)
+  - [x] Node Runtime erzwingen
+  - [x] Dependencies prüfen
+  - [x] Health-Check Endpoint erstellen
+  - [ ] Problem: api/index.ts kann nicht kompiliert werden (TypeScript + komplexe Imports)
+  - [ ] Lösung: Backend als separaten Build-Step oder Vercel Functions anders strukturieren
 
