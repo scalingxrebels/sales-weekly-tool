@@ -105,3 +105,16 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
+
+
+# Vercel
+.vercel/
+
+# API Build - ignore TypeScript sources, keep compiled JS
+api/*.ts
+api/tsconfig.json
+!api/index.js
+!api/health.js
+!api/ping.js
+api/*.map
+

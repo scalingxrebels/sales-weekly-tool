@@ -106,6 +106,13 @@
 
 
 ## In Progress
+- [ ] Backend komplett für Vercel Serverless umstrukturieren
+  - [ ] Pre-build API Handler mit esbuild
+  - [ ] Vereinfachte tRPC Routing Struktur
+  - [ ] Alle Dependencies korrekt bundlen
+  - [ ] Testen und deployen
+
+## Completed
 - [ ] Fix API Routing für Vercel Serverless Functions (tRPC Endpoints)
   - [x] Node-Version pinnen (22.x)
   - [x] Node Runtime erzwingen
