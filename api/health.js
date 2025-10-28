@@ -1,8 +1,4 @@
-export const config = {
-  runtime: 'nodejs',
-};
-
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   return res.json({ 
     ok: true,
     timestamp: new Date().toISOString(),
@@ -13,5 +9,5 @@ export default async function handler(req, res) {
     },
     platform: 'vercel',
   });
-}
+};
 
