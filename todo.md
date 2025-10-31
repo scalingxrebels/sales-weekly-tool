@@ -125,9 +125,10 @@
 
 
 ## Netlify Deployment (Alternative zu Vercel)
-- [ ] Netlify-Konfiguration erstellen (netlify.toml)
-- [ ] Netlify Functions aus Vercel API Handler anpassen
-- [ ] Build-Script für Netlify anpassen
-- [ ] Deployment durchführen
-- [ ] API und Frontend testen
+- [x] Netlify-Konfiguration erstellen (netlify.toml)
+- [x] Netlify Functions aus Vercel API Handler anpassen
+- [x] Build-Script für Netlify anpassen
+- [x] Deployment durchgeführt
+- [ ] API wirft Fehler: "Unexpected token '<', '<!DOCTYPE '... is not valid JSON"
+- [ ] Debugging und Fixes
 

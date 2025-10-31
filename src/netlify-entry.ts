@@ -1,71 +1,83 @@
 /**
  * Netlify Function Entry Point
- * This file is bundled to netlify/functions/api.js
+ * Direct tRPC HTTP Handler without Express
  */
 import type { Handler, HandlerEvent, HandlerContext } from '@netlify/functions';
-import express from 'express';
-import { createExpressMiddleware } from '@trpc/server/adapters/express';
-import cookieParser from 'cookie-parser';
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { appRouter } from '../server/routers';
 import { createContext } from '../server/_core/context';
 
-// Create Express app
-const app = express();
-
-// Configure middleware
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cookieParser());
-
-// tRPC API - mount at /trpc
-app.use(
-  '/trpc',
-  createExpressMiddleware({
-    router: appRouter,
-    createContext,
-  })
-);
-
 // Export Netlify Function handler
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-  // Convert Netlify event to Express-compatible request
-  const path = event.path.replace('/.netlify/functions/api', '');
-  
-  return new Promise((resolve) => {
-    const req: any = {
+  try {
+    // Convert Netlify event to Fetch API Request
+    const url = new URL(event.path, `https://${event.headers.host || 'localhost'}`);
+    
+    // Remove /.netlify/functions/api prefix
+    const path = event.path.replace('/.netlify/functions/api', '');
+    url.pathname = path;
+    
+    const request = new Request(url.toString(), {
       method: event.httpMethod,
-      url: path,
-      headers: event.headers,
-      body: event.body,
-    };
+      headers: new Headers(event.headers as Record<string, string>),
+      body: event.body || undefined,
+    });
     
-    const res: any = {
-      statusCode: 200,
-      headers: {},
-      body: '',
-      status(code: number) {
-        this.statusCode = code;
-        return this;
+    // Use tRPC fetch adapter
+    const response = await fetchRequestHandler({
+      endpoint: '/trpc',
+      req: request,
+      router: appRouter,
+      createContext: async ({ req }) => {
+        // Convert Fetch Request to Express-like request for context
+        const mockReq: any = {
+          headers: Object.fromEntries(req.headers.entries()),
+          cookies: {},
+        };
+        
+        // Parse cookies from header
+        const cookieHeader = req.headers.get('cookie');
+        if (cookieHeader) {
+          cookieHeader.split(';').forEach(cookie => {
+            const [key, value] = cookie.trim().split('=');
+            if (key && value) {
+              mockReq.cookies[key] = decodeURIComponent(value);
+            }
+          });
+        }
+        
+        const mockRes: any = {
+          setHeader: () => {},
+          cookie: () => {},
+          clearCookie: () => {},
+        };
+        
+        return createContext({ req: mockReq, res: mockRes });
       },
-      setHeader(key: string, value: string) {
-        this.headers[key] = value;
-        return this;
-      },
-      send(data: any) {
-        this.body = typeof data === 'string' ? data : JSON.stringify(data);
-        resolve({
-          statusCode: this.statusCode,
-          headers: this.headers,
-          body: this.body,
-        });
-      },
-      json(data: any) {
-        this.headers['Content-Type'] = 'application/json';
-        this.send(data);
-      },
-    };
+    });
     
-    app(req, res);
-  });
+    // Convert Fetch Response to Netlify response
+    const body = await response.text();
+    const headers: Record<string, string> = {};
+    response.headers.forEach((value, key) => {
+      headers[key] = value;
+    });
+    
+    return {
+      statusCode: response.status,
+      headers,
+      body,
+    };
+  } catch (error: any) {
+    console.error('Netlify Function Error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: 'Internal Server Error',
+        message: error.message,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+      }),
+    };
+  }
 };
 
