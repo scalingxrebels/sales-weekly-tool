@@ -121,3 +121,13 @@
   - [ ] Problem: api/index.ts kann nicht kompiliert werden (TypeScript + komplexe Imports)
   - [ ] Lösung: Backend als separaten Build-Step oder Vercel Functions anders strukturieren
 
+
+
+
+## Netlify Deployment (Alternative zu Vercel)
+- [ ] Netlify-Konfiguration erstellen (netlify.toml)
+- [ ] Netlify Functions aus Vercel API Handler anpassen
+- [ ] Build-Script für Netlify anpassen
+- [ ] Deployment durchführen
+- [ ] API und Frontend testen
+
