@@ -1,7 +1,6 @@
 {
   "installCommand": "pnpm install --no-frozen-lockfile",
-  "buildCommand": "pnpm build && pnpm build:api",
-  "outputDirectory": "dist/public",
+  "buildCommand": "pnpm build && pnpm build:api && mkdir -p public && cp -r dist/public/* public/",
   "framework": null
 }
 
