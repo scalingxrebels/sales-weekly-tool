@@ -4,10 +4,10 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch, Redirect } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Login from "./pages/Login.tsx";
-import WeeklyDashboard from "./pages/WeeklyDashboard.tsx";
-import SalesLog from "./pages/SalesLog.tsx";
-import InsightsFeed from "./pages/InsightsFeed.tsx";
+import Login from "./pages/Login";
+import WeeklyDashboard from "./pages/WeeklyDashboard";
+import SalesLog from "./pages/SalesLog";
+import InsightsFeed from "./pages/InsightsFeed";
 import { useAuth } from "./hooks/useAuth";
 
 function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
