@@ -22,7 +22,7 @@ async function buildAPI() {
   // Bundle tRPC handler
   try {
     await esbuild.build({
-      entryPoints: [join(__dirname, 'api/index.ts')],
+      entryPoints: [join(__dirname, 'src/api-entry.ts')],
       bundle: true,
       platform: 'node',
       target: 'node22',

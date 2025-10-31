@@ -27737,13 +27737,13 @@ var require_jsonwebtoken = __commonJS({
   }
 });
 
-// api/index.ts
-var index_exports = {};
-__export(index_exports, {
+// src/api-entry.ts
+var api_entry_exports = {};
+__export(api_entry_exports, {
   config: () => config2,
   default: () => handler
 });
-module.exports = __toCommonJS(index_exports);
+module.exports = __toCommonJS(api_entry_exports);
 var import_express = __toESM(require_express2(), 1);
 
 // node_modules/.pnpm/@trpc+server@11.6.0_typescript@5.9.3/node_modules/@trpc/server/dist/utils-CLZnJdb_.mjs
@@ -30488,7 +30488,7 @@ function createExpressMiddleware(opts) {
   };
 }
 
-// api/index.ts
+// src/api-entry.ts
 var import_cookie_parser = __toESM(require_cookie_parser(), 1);
 
 // node_modules/.pnpm/zod@4.1.12/node_modules/zod/v4/classic/external.js
@@ -54427,7 +54427,7 @@ async function createContext(opts) {
   };
 }
 
-// api/index.ts
+// src/api-entry.ts
 var config2 = {
   runtime: "nodejs"
 };
