@@ -143,7 +143,14 @@ export const authRouter = router({
     }
 
     const decoded = verifyToken(token);
-    if (!decoded) {
+    if (!decoded || !decoded.userId) {
+      // Clear invalid cookie
+      ctx.res.clearCookie("app_session_id", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+      });
       return null;
     }
 

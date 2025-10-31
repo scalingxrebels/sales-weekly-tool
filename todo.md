@@ -132,3 +132,12 @@
 - [ ] API wirft Fehler: "Unexpected token '<', '<!DOCTYPE '... is not valid JSON"
 - [ ] Debugging und Fixes
 
+
+
+
+## Recent Fixes
+- [x] Fix authentication error: Empty userId validation in auth.me procedure (2025-10-31)
+  - Added validation to check if decoded.userId exists before database query
+  - Clear invalid cookies automatically
+  - Prevents database errors with empty user IDs
+
